@@ -28,10 +28,75 @@ for (match_number in 1:nrow(df)) {
 }
 
 head(seasonTable)
+
+
+# The winner of each match has highest score.  
+# Each team scores 3 points for a win, 1 point for a draw.
 # Team with most points at the end of season is the season winner. 
-# TODO: [RESULT] Each team’s points as per the first 5 rounds of matches and full season. 
-# TODO: Season Results [TABLE] (two tables, one table for each set of results),
-# TODO: ordering teams by their points (i.e. a results ladder). 
+
+# [RESULT] Results Ladder: Each team’s points as per the first 5 rounds (ordered by points)
+first_n_matches <- 5
+teams_associatedPoints <- data.frame(matrix(ncol=2, nrow=0))
+headings <- c("teamName", "totalPoints")
+colnames(teams_associatedPoints) <- headings
+
+# aggregate points for each unique team in set
+for(i in 1:first_n_matches) {
+  match <- seasonTable[i,]
+  
+  homeTeamFinalPoints <- 0
+  awayTeamFinalPoints <- 0
+  
+  # award points: win, draw
+  if(match[["homeTeamPoints"]] > match[["awayTeamPoints"]]) {
+    homeTeamFinalPoints <- match[["homeTeamPoints"]] + 3
+    awayTeamFinalPoints <- match[["awayTeamPoints"]]
+  } else if(match[["homeTeamPoints"]] == match[["awayTeamPoints"]]) {
+    homeTeamFinalPoints <- match[["homeTeamPoints"]] + 1
+    awayTeamFinalPoints <- match[["awayTeamPoints"]] + 1
+  } else if(match[["homeTeamPoints"]] < match[["awayTeamPoints"]]){
+    homeTeamFinalPoints <- match[["homeTeamPoints"]]
+    awayTeamFinalPoints <- match[["awayTeamPoints"]] + 3
+  } else {
+    # do nothing
+  }
+  
+  # aggregate team points
+  homeTeamIdx <- which(teams_associatedPoints$teamName == match[["homeTeam"]])
+  awayTeamIdx <- which(teams_associatedPoints$teamName == match[["awayTeam"]])
+  
+  if(length(homeTeamIdx) != 0) {
+    teams_associatedPoints[homeTeamIdx, 1] <- match[["homeTeam"]]
+    teams_associatedPoints[homeTeamIdx, 2] <- homeTeamFinalPoints
+  } else {
+    # get next row index
+    nextRowIdx <- ifelse(length(teams_associatedPoints$teamName) == 0, 1, length(teams_associatedPoints$teamName) + 1)
+    teams_associatedPoints[nextRowIdx, 1] <- match[["homeTeam"]]
+    teams_associatedPoints[nextRowIdx, 2] <- homeTeamFinalPoints
+  }
+  
+  if(length(awayTeamIdx) != 0) {
+    teams_associatedPoints[awayTeamIdx, 1] <- match[["awayTeam"]]
+    teams_associatedPoints[awayTeamIdx, 2] <- awayTeamFinalPoints
+  } else {
+    nextRowIdx <- ifelse(length(teams_associatedPoints$teamName) == 0, 1, length(teams_associatedPoints$teamName) + 1)
+    teams_associatedPoints[nextRowIdx, 1] <- match[["awayTeam"]]
+    teams_associatedPoints[nextRowIdx, 2] <- awayTeamFinalPoints
+  }
+  
+  # debugger
+  # print(match[["awayTeam"]])
+  # print(awayTeamFinalPoints)
+  # print(match[["homeTeam"]])
+  # print(homeTeamFinalPoints)
+  # print("___________________")
+}
+# Order teams by points descending
+teams_associatedPoints_ordered <- order(teams_associatedPoints$totalPoints, decreasing = TRUE) # returns index of order, used to ORDER tables
+resultsLadder_first5Teams <- teams_associatedPoints[teams_associatedPoints_ordered,]
+print(resultsLadder_first5Teams)
+
+# [RESULT] Results Ladder: Each team’s points for the full season (ordered by points)
 
 # Pick the season who’s last digit corresponds to 3.
 
