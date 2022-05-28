@@ -107,6 +107,9 @@ season_no_matches <- length(season2016Set$season)
 buildResultsLadder(season2016Set, season_no_matches)
 
 # Pick the season who’s last digit corresponds to 3.
+season2013Set <- subset(seasonTable, subset=(season == 2013))
+season_no_matches <- length(season2013Set$season)
+buildResultsLadder(season2013Set, season_no_matches)
 
 
 # An investigation into home game advantage is planned for the coming months. 
