@@ -274,7 +274,7 @@ for(n in 2) {
   print("_____")
 }
 
-  print(nnn[[2]][1]=="2013")
+  print(nnn[[2]][2])
 
 testss <- data.frame()
 
@@ -296,32 +296,69 @@ n_matches <- 5 # nrow(c_data$Season)
     awayTeam <- match$awayTeam
     season <- match$Season
   
+    ###############################
     # Season data
+    ###############################
     # if seasonList does't have season, create, else extract subset
-    seasonSubset <- data.frame(matrix(nrow=0,ncol=8))
-    colnames(seasonSubset) <- c("no.games","no.wins","win.percentage","points.scored","points.conceded","total.snitches","goals","tournament.wins")
+    seasonSubset <- data.frame(matrix(nrow=0,ncol=9))
+    colnames(seasonSubset) <- c("team","no.games","no.wins","win.percentage","points.scored","points.conceded","total.snitches","goals","tournament.wins")
     seasonExistsIndex <- 0
-    
+    homeTeamExistsIndex <- 0
+    awayTeamExistsIndex <- 0
+
     if(length(seasonList) > 0) {
       for(s in length(seasonList)) {
         if(season == seasonList[[s]][1]) {
           seasonSubset <- seasonList[[s]][2]
+          # get match from season subset
+          for(ss in 1:length(seasonSubset$no.games)) {
+            if(seasonSubset$team == match$homeTeam) {
+              homeTeam <- seasonSubset
+              homeTeamExistsIndex <- ss
+            }
+            if(seasonSubset$team == match$awayTeam) {
+              awayTeam <- seasonSubset
+              awayTeamExistsIndex <- ss
+            }
+          }
           seasonExistsIndex <- s
         }
       }
     }
     
+    ###############################
+    # Match statistics
+    ###############################
+    seasonMatchData <- NULL
+
     # calculate
     # Number of games
+    
+    totalGames <- ifelse(is.na(team.statistics[homeIdx, 4]), 1, team.statistics[homeIdx, 4] + match$homeGoals)
+
     # Number of wins
     # Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins.
     
-    # insert/update in season
+    
+    ###############################
+    # Update/Insert season
+    ###############################
+    # insert data into season data
+    if(awayTeamExistsIndex != 0) {
+      
+    } else {
+      
+    }
+    if(homeTeamExistsIndex != 0) {
+      
+    } else {
+      
+    }
     
     # insert season subset back into season
-    season_data <- list(season, seasonSubset)
-    if(seasonExists) {
-      seasonList[seasonExistsIndex] <- insert
+    if(seasonExistsIndex != 0) {
+      seasonList[[seasonExistsIndex]][[1]] <- season
+      seasonList[[seasonExistsIndex]][[2]] <- seasonSubset
     }else {
       append(seasonList, season_data, after = 0)
     }
