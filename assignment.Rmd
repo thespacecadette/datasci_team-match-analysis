@@ -149,7 +149,7 @@ homeGameCalculations <- function (cf) {
   team.statistics <- data.frame(matrix(ncol=5, nrow=0))
   colnames(team.statistics) <- c("team", "home.games", "total.games", "total.points.homegame", "total.points")
 
-  for(i in 1:22) {
+  for(i in 1:n_matches) {
     match <- competition.results.df[i,]
     homeTeam <- match$homeTeam
     awayTeam <- match$awayTeam
@@ -248,13 +248,29 @@ homeGameCalculations(competition.results.df)
 
 # QUESTION 4
 
-* Provide a table containing the team statistics for all seasons. 
-* Including, but not limited to the following:
-* Number of games
-* Number of wins
-* Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins. 
-* Teams ordered in terms of total points scored.
-    
+## Provide a table containing the team statistics for all seasons. Including, but not limited to the following: number of games, number of wins, winning percentage, points scored, points conceded, number of snitch catches, goals scored, number of tournament wins. Order the teams in terms of total points scored.
+
+```{r}
+
+# Provide a table containing the team statistics for all seasons. 
+data <- read.csv("competitionResults.csv")
+
+# Number of games
+games.by.season = aggregate(data$homeGoals ~ data$awayGoals, list(Season=data$Season), FUN=mean)
+
+print(games.by.season)
+sprintf("Number of games by season is: % s", games.by.season$)
+
+# Number of wins
+# Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins.
+
+# Teams ordered in terms of total points scored.
+#     
+
+```
+
+
+
 
 
 
