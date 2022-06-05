@@ -147,21 +147,29 @@ buildResultsLadder(season2013Set, season_no_matches)
 # QUESTION 3
 ## An investigation into home game advantage is planned for the coming months. Write a function that returns a count of the number of home games each team has had, the total number of games each team has played in, the total points scored in a home game and the total number of points the team has scored. Provide these results in a data frame. Run the function on the provided data and show the resulting table output. 
 
+Function below. Scroll to next code snippet to test code
+
 ```{r}
-competitionResults <- read.csv("competitionResults.csv")
-
-      # pointsCalculator = aggregate(cf$Number.of.cylinders, list(cf$Make), FUN=mean)
-
 ## Please note: normally, I would use more of a functional programming approach (centralisation and usage of modules), but for time efficiency, I have not fully done this. 
 homeGameCalculations <- function (cf) {
-  # numeric vars
-  n_matches = nrow(cf$Season)
+  # PASTE HERE 
+}
+```
+
+
+## Testing function
+
+```{r}
+competition.results.df <- read.csv("competitionResults.csv")
+
+# numeric vars
+  n_matches = nrow(competition.results.df)
   # data vars
-  team.statistics <- data.frame(matrix(numcol=3, numrow=0))
+  team.statistics <- data.frame(matrix(ncol=5, nrow=0))
   colnames(team.statistics) <- c("team", "home.games", "total.games", "total.points.homegame", "total.points")
   
   for(i in 1:n_matches) {
-    match <- set[i,]
+    match <- competition.results.df[i,]
     homeTeam <- match$homeTeam
     awayTeam <- match$awayTeam
     
@@ -203,23 +211,24 @@ homeGameCalculations <- function (cf) {
     
     
     # total number of points the team has scored
-    totalPointsForMatch <- getTotalPoints(homeTeam, awayTeam, match$homeGoals, match$awayGoals, team.statistics[homeTeam.idx, 5], team.statistics[awayTeam.idx, 5], whoGotSnitch)
-      team.statistics[homeTeam.idx, 5] <- totalPointsForMatch[1] 
-      team.statistics[awayTeam.idx, 5] <- totalPointsForMatch[2] 
+    totalPointsForMatch <- 0
+    
+    if(length(homeTeam.idx) > 0) {
+      totalPointsForMatch <- getTotalPoints(homeTeam, awayTeam, match$homeGoals, match$awayGoals, team.statistics[homeTeam.idx, 5], team.statistics[awayTeam.idx, 5], whoGotSnitch)
+    } else if(length(awayTeam.idx) > 0) {
+      totalPointsForMatch <- getTotalPoints(homeTeam, awayTeam, match$homeGoals, match$awayGoals, team.statistics[homeTeam.idx, 5], team.statistics[awayTeam.idx, 5], whoGotSnitch)
+    }
+    
+    team.statistics[homeTeam.idx, 5] <- totalPointsForMatch[1] 
+    team.statistics[awayTeam.idx, 5] <- totalPointsForMatch[2] 
 
     # Provide these results in a data frame. 
-    # Provide a table containing the team statistics for all seasons. 
-    # Including, but not limited to the following:
-    # Number of games
-    # Number of wins
-    # Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins. 
-    # Teams ordered in terms of total points scored.
-      
+    print(team.statistics)
   }
   
-    # Run the function on the provided data and show the resulting table output.
+  # Run the function on the provided data and show the resulting table output.
+  print(team.statistics)
 
-}
 
 # I've abstracted this function because point calculations are used more than once
 getTotalPoints <- function(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, homeTeamPoints, awayTeamPoints, whoGotSnitch) {
@@ -247,7 +256,7 @@ getTotalPoints <- function(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, hom
   # snitch bonus points
   if(homeTeam == whoGotSnitch) {
     homeTeamFinalPoints <- homeTeamFinalPoints + 50
-  } elseif (awayTeam == whoGotSnitch) {
+  } else if (awayTeam == whoGotSnitch) {
     awayTeamFinalPoints <- awayTeamFinalPoints + 50
   }
 
@@ -255,10 +264,18 @@ getTotalPoints <- function(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, hom
   
   total.match.points
 }
+# homeGameCalculations(competition.results.df)
 ```
 
+# QUESTION 4
 
-
+* Provide a table containing the team statistics for all seasons. 
+* Including, but not limited to the following:
+* Number of games
+* Number of wins
+* Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins. 
+* Teams ordered in terms of total points scored.
+    
 
 
 
