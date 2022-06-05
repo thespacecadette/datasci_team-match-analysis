@@ -249,21 +249,85 @@ homeGameCalculations(competition.results.df)
 # QUESTION 4
 
 ## Provide a table containing the team statistics for all seasons. Including, but not limited to the following: number of games, number of wins, winning percentage, points scored, points conceded, number of snitch catches, goals scored, number of tournament wins. Order the teams in terms of total points scored.
+```{r}
+library(expss)
+
+s1 <- data.frame(matrix(nrow=2,ncol=2))
+colnames(s1) <- c("test","test1")
+s1[2,1] <- "a"
+s1[2,2] <- "a_test1"
+
+s_1 <- list("2012", s1)
+
+s2 <- data.frame(matrix(nrow=2,ncol=2))
+colnames(s1) <- c("test","test1")
+s2[2,1] <- "b"
+s2[2,2] <- "b_test1"
+
+
+s_1 <- list("2012", s1)
+s_2 <- list("2013", s2)
+nnn <- list(s_1,s_2)
+
+for(n in 2) {
+  # print(testlist[[n]])
+  print("_____")
+}
+
+  print(nnn[[2]][1]=="2013")
+
+testss <- data.frame()
+
+print(is.na.data.frame(testss))
+
+```
+
 
 ```{r}
 
 # Provide a table containing the team statistics for all seasons. 
-data <- read.csv("competitionResults.csv")
+c_data <- read.csv("competitionResults.csv")
+seasonList <- list()
+n_matches <- 5 # nrow(c_data$Season)
 
-# Number of games
-games.by.season = aggregate(data$homeGoals ~ data$awayGoals, list(Season=data$Season), FUN=mean)
-
-print(games.by.season)
-sprintf("Number of games by season is: % s", games.by.season$)
-
-# Number of wins
-# Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins.
-
+  for(i in 1:1) {
+    match <- c_data[i,]
+    homeTeam <- match$homeTeam
+    awayTeam <- match$awayTeam
+    season <- match$Season
+  
+    # Season data
+    # if seasonList does't have season, create, else extract subset
+    seasonSubset <- data.frame(matrix(nrow=0,ncol=8))
+    colnames(seasonSubset) <- c("no.games","no.wins","win.percentage","points.scored","points.conceded","total.snitches","goals","tournament.wins")
+    seasonExistsIndex <- 0
+    
+    if(length(seasonList) > 0) {
+      for(s in length(seasonList)) {
+        if(season == seasonList[[s]][1]) {
+          seasonSubset <- seasonList[[s]][2]
+          seasonExistsIndex <- s
+        }
+      }
+    }
+    
+    # calculate
+    # Number of games
+    # Number of wins
+    # Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins.
+    
+    # insert/update in season
+    
+    # insert season subset back into season
+    season_data <- list(season, seasonSubset)
+    if(seasonExists) {
+      seasonList[seasonExistsIndex] <- insert
+    }else {
+      append(seasonList, season_data, after = 0)
+    }
+  }
+  
+  print(seasonList)
 # Teams ordered in terms of total points scored.
 #     
 
