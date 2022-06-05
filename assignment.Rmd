@@ -73,15 +73,6 @@ buildResultsLadder <- function(set, n_matches) {
   for(i in 1:n_matches) {
     match <- set[i,]
     
-    # debugger
-    # print(match[["awayTeam"]])
-    # print(awayTeamFinalPoints)
-    # print(match[["homeTeam"]])
-    # print(homeTeamFinalPoints)
-    # print("___________________")
-    # homeTeamFinalPoints <- 0
-    # awayTeamFinalPoints <- 0
-    
     # award points: win, draw
     if(match[["homeTeamPoints"]] > match[["awayTeamPoints"]]) {
       homeTeamFinalPoints <- match[["homeTeamPoints"]] + 3
@@ -147,90 +138,65 @@ buildResultsLadder(season2013Set, season_no_matches)
 # QUESTION 3
 ## An investigation into home game advantage is planned for the coming months. Write a function that returns a count of the number of home games each team has had, the total number of games each team has played in, the total points scored in a home game and the total number of points the team has scored. Provide these results in a data frame. Run the function on the provided data and show the resulting table output. 
 
-Function below. Scroll to next code snippet to test code
+Function below with associated `getTotalPoints()` I've created to handle point/goal calculations. Scroll to next code snippet to test. code
 
 ```{r}
 ## Please note: normally, I would use more of a functional programming approach (centralisation and usage of modules), but for time efficiency, I have not fully done this. 
 homeGameCalculations <- function (cf) {
-  # PASTE HERE 
-}
-```
-
-
-## Testing function
-
-```{r}
-competition.results.df <- read.csv("competitionResults.csv")
-
-# numeric vars
+  # numeric vars
   n_matches = nrow(competition.results.df)
   # data vars
   team.statistics <- data.frame(matrix(ncol=5, nrow=0))
   colnames(team.statistics) <- c("team", "home.games", "total.games", "total.points.homegame", "total.points")
-  
-  for(i in 1:n_matches) {
+
+  for(i in 1:22) {
     match <- competition.results.df[i,]
     homeTeam <- match$homeTeam
     awayTeam <- match$awayTeam
-    
+  
+    # indexes
     homeTeam.idx <- which(team.statistics$team == homeTeam)
     awayTeam.idx <- which(team.statistics$team == awayTeam)
-
-    # Return: Count of 
-    if(length(homeTeam.idx) != 0) {
-      if(match$round == homeTeam) {
-        # The number of HOME games each team has had
-        totalHomeGames <- team.statistics[homeTeam.idx, 3] + 1
-        team.statistics[homeTeam.idx, 2] <- totalHomeGames 
-        
-        # The total points scored in a home game;
-        totalHomeGamePoints <- team.statistics[homeTeam.idx, 4] + match$homeGoals
-        team.statistics[homeTeam.idx, 4] <- totalHomeGamePoints
-      }
-      
-      # The total number of games each team has played in
-      totalGames <- team.statistics[homeTeam.idx, 3] + 1
-      team.statistics[homeTeam.idx, 3] <- totalGames 
-    } 
+    nextIdx <- length(team.statistics$team)
+  
+    # Hometeam stat calculations
+    homeIdx <- ifelse(nextIdx == 0, 1, ifelse(length(homeTeam.idx) != 0, homeTeam.idx, nextIdx+1))
     
-    if(length(awayTeam.idx) != 0) {
-      if(match$round == awayTeam) {
-        # The number of HOME games each team has had
-        totalHomeGames <- team.statistics[awayTeam.idx, 3] + 1
-        team.statistics[awayTeam.idx, 2] <- totalHomeGames 
-        
-        # The total points scored in a home game;
-        totalAwayGamePoints <- team.statistics[awayTeam.idx, 4] + match$awayGoals
-        team.statistics[homeTeam.idx, 4] <- totalAwayGamePoints
-      }
-      
-      # The total number of games each team has played in
-      totalGames <- team.statistics[awayTeam.idx, 3] + 1
-      team.statistics[awayTeam.idx, 3] <- totalGames 
-    }
+    # Awayteam stat calculations
+    awayIdx <- ifelse(nextIdx == 0, 2, ifelse(length(awayTeam.idx) != 0, awayTeam.idx, nextIdx+2))
+  
+    team.statistics[homeIdx, 1] <- homeTeam 
+    team.statistics[awayIdx, 1] <- awayTeam 
     
-    
-    # total number of points the team has scored
-    totalPointsForMatch <- 0
-    
-    if(length(homeTeam.idx) > 0) {
-      totalPointsForMatch <- getTotalPoints(homeTeam, awayTeam, match$homeGoals, match$awayGoals, team.statistics[homeTeam.idx, 5], team.statistics[awayTeam.idx, 5], whoGotSnitch)
-    } else if(length(awayTeam.idx) > 0) {
-      totalPointsForMatch <- getTotalPoints(homeTeam, awayTeam, match$homeGoals, match$awayGoals, team.statistics[homeTeam.idx, 5], team.statistics[awayTeam.idx, 5], whoGotSnitch)
-    }
-    
-    team.statistics[homeTeam.idx, 5] <- totalPointsForMatch[1] 
-    team.statistics[awayTeam.idx, 5] <- totalPointsForMatch[2] 
-
-    # Provide these results in a data frame. 
-    print(team.statistics)
+    # The number of HOME games each team has had
+    totalHomeGames <- ifelse(is.na(team.statistics[homeIdx, 2]), 1, team.statistics[homeIdx, 2] + 1)
+    team.statistics[homeIdx, 2] <- totalHomeGames 
+    team.statistics[awayIdx, 2] <- ifelse(is.na(team.statistics[awayIdx, 2]), 0, team.statistics[awayIdx, 2])
+  
+    # The total number of games each team has played in
+    totalHomeTeamGames <- ifelse(is.na(team.statistics[homeIdx, 3]), 1, team.statistics[homeIdx, 3] + 1)
+    team.statistics[homeIdx, 3] <- totalHomeTeamGames 
+    totalAwayTeamGames <- ifelse(is.na(team.statistics[awayIdx, 3]), 1, team.statistics[awayIdx, 3] + 1)
+    team.statistics[awayIdx, 3] <- totalAwayTeamGames 
+  
+    # The total points scored in a home game
+    totalHomeGamePoints <- ifelse(is.na(team.statistics[homeIdx, 4]), 1, team.statistics[homeIdx, 4] + match$homeGoals)
+    team.statistics[homeIdx, 4] <- totalHomeGamePoints
+    team.statistics[awayIdx, 4] <- ifelse(is.na(team.statistics[awayIdx, 4]), 0, team.statistics[awayIdx, 4])
+  
+    # total points overall
+    totalPointsForMatch <- 0 # initialise variable here
+    whoGotSnitch <- match$snitch
+        totalPointsForMatch <-  getTotalPoints(homeTeam, awayTeam, match$homeGoals, match$awayGoals, totalHomeGamePoints, team.statistics[awayIdx, 5], whoGotSnitch)
+  
+    team.statistics[homeIdx, 5] <- totalPointsForMatch[1]
+    team.statistics[awayIdx, 5] <- totalPointsForMatch[2]
   }
   
-  # Run the function on the provided data and show the resulting table output.
   print(team.statistics)
 
+}
 
-# I've abstracted this function because point calculations are used more than once
 getTotalPoints <- function(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, homeTeamPoints, awayTeamPoints, whoGotSnitch) {
   homeTeamFinalPoints <- 0
   awayTeamFinalPoints <- 0
@@ -239,6 +205,9 @@ getTotalPoints <- function(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, hom
   homeTeamFinalPoints <- homeTeamGoals * 10
   awayTeamFinalPoints <- awayTeamGoals * 10
 
+  # check NA on awayTeamPoints
+  awayTeamPoints <- ifelse(is.na(awayTeamPoints),0,awayTeamPoints)
+  
   # award points: win, draw
   if(homeTeamPoints > awayTeamPoints) {
     homeTeamFinalPoints <- homeTeamPoints + 3
@@ -261,10 +230,20 @@ getTotalPoints <- function(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, hom
   }
 
   total.match.points <- c(homeTeamFinalPoints, awayTeamFinalPoints)
-  
   total.match.points
 }
-# homeGameCalculations(competition.results.df)
+
+competition.results.df <- read.csv("competitionResults.csv")
+  
+# Run the function on the provided data and show the resulting table output.
+homeGameCalculations(competition.results.df)
+```
+
+
+## Testing function
+
+```{r message=TRUE, warning=TRUE}
+# PUT HERE
 ```
 
 # QUESTION 4
