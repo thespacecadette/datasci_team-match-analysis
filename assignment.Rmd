@@ -5,12 +5,32 @@ date: '2022-06-05'
 output: word_document
 ---
 
+By including this statement, we the authors of this work, verify that:
+* We hold a copy of this assignment that we can produce if the original is lost or damaged.
+* We hereby certify that no part of this assignment/product has been copied from any other student’s
+work or from any other source except where due acknowledgement is made in the assignment.
+No part of this assignment/product has been wrien/produced for us by another person except
+where such collaboration has been authorised by the subject lecturer/tutor concerned.
+* We are aware that this work may be reproduced and submied to plagiarism detection soware programs for the purpose of detecting possible plagiarism (which may retain a copy on its database
+for future plagiarism checking).
+* We hereby certify that we have read and understand what the School of Computing, Engineering
+and Mathematics denes as minor and substantial breaches of misconduct as outlined in the learning
+guide for this unit.
 
+# QUESTION 1
+## Write the code to compute the total scored by each team for each match. Note that each goal is worth 10 points and the team that caught the snitch is awarded an extra 50 points. Run your code on the data and present the results in a table showing the season and round number, the match number (a new variable that identies each match of the season), the home and away team names and their scores.
+
+## DATA PREPROCESSING
+
+```{r}
 df <- read.csv("competitionResults.csv")
 
-# DATA PREPROCESSING
 head(df)
+```
 
+## THE ALGORITHM
+
+```{r}
 # [RESULT] Total scored by each team for each match. Each goal is worth 10 points, team that caught the snitch  awarded extra 50 points. 
 # * the season and round number
 # * the match number (a new variable that identifies each match of the season)
@@ -37,10 +57,12 @@ for (match_number in 1:nrow(df)) {
 
 head(seasonTable)
 
+```
 
-# The winner of each match has highest score.  
-# Each team scores 3 points for a win, 1 point for a draw.
-# Team with most points at the end of season is the season winner. 
+# QUESTION 2
+## The winner of each match has highest score. Each team scores 3 points for a win, 1 point for a draw. Team with most points at the end of season is the season winner. 
+
+```{r}
 teams_associatedPoints <- data.frame(matrix(ncol=2, nrow=0))
 headings <- c("teamName", "totalPoints")
 colnames(teams_associatedPoints) <- headings
@@ -99,7 +121,8 @@ buildResultsLadder <- function(set, n_matches) {
     
   }
   # Order teams by points descending
-  teams_associatedPoints_ordered <- order(teams_associatedPoints$totalPoints, decreasing = TRUE) # returns index of order, used to ORDER tables
+  teams_associatedPoints_ordered <- order(teams_associatedPoints$totalPoints, decreasing = TRUE) 
+  # returns index of order, used to ORDER tables
   resultsLadder <- teams_associatedPoints[teams_associatedPoints_ordered,]
   print(resultsLadder)
 }
@@ -119,21 +142,123 @@ season2013Set <- subset(seasonTable, subset=(season == 2013))
 season_no_matches <- length(season2013Set$season)
 buildResultsLadder(season2013Set, season_no_matches)
 
+```
 
-# An investigation into home game advantage is planned for the coming months. 
-# [RESULTS] Return: Count of 
-# * The number of home games each team has had
-# * The total number of games each team has played in
-# * The total points scored in a home game and the total number of points the team has scored. 
-# * Provide these results in a data frame. Run the function on the provided data and show the resulting table output.
+# QUESTION 3
+## An investigation into home game advantage is planned for the coming months. Write a function that returns a count of the number of home games each team has had, the total number of games each team has played in, the total points scored in a home game and the total number of points the team has scored. Provide these results in a data frame. Run the function on the provided data and show the resulting table output. 
+
+```{r}
+competitionResults <- read.csv("competitionResults.csv")
+
+      # pointsCalculator = aggregate(cf$Number.of.cylinders, list(cf$Make), FUN=mean)
+
+## Please note: normally, I would use more of a functional programming approach (centralisation and usage of modules), but for time efficiency, I have not fully done this. 
+homeGameCalculations <- function (cf) {
+  # numeric vars
+  n_matches = nrow(cf$Season)
+  # data vars
+  team.statistics <- data.frame(matrix(numcol=3, numrow=0))
+  colnames(team.statistics) <- c("team", "home.games", "total.games", "total.points.homegame", "total.points")
+  
+  for(i in 1:n_matches) {
+    match <- set[i,]
+    homeTeam <- match$homeTeam
+    awayTeam <- match$awayTeam
+    
+    homeTeam.idx <- which(team.statistics$team == homeTeam)
+    awayTeam.idx <- which(team.statistics$team == awayTeam)
+
+    # Return: Count of 
+    if(length(homeTeam.idx) != 0) {
+      if(match$round == homeTeam) {
+        # The number of HOME games each team has had
+        totalHomeGames <- team.statistics[homeTeam.idx, 3] + 1
+        team.statistics[homeTeam.idx, 2] <- totalHomeGames 
+        
+        # The total points scored in a home game;
+        totalHomeGamePoints <- team.statistics[homeTeam.idx, 4] + match$homeGoals
+        team.statistics[homeTeam.idx, 4] <- totalHomeGamePoints
+      }
+      
+      # The total number of games each team has played in
+      totalGames <- team.statistics[homeTeam.idx, 3] + 1
+      team.statistics[homeTeam.idx, 3] <- totalGames 
+    } 
+    
+    if(length(awayTeam.idx) != 0) {
+      if(match$round == awayTeam) {
+        # The number of HOME games each team has had
+        totalHomeGames <- team.statistics[awayTeam.idx, 3] + 1
+        team.statistics[awayTeam.idx, 2] <- totalHomeGames 
+        
+        # The total points scored in a home game;
+        totalAwayGamePoints <- team.statistics[awayTeam.idx, 4] + match$awayGoals
+        team.statistics[homeTeam.idx, 4] <- totalAwayGamePoints
+      }
+      
+      # The total number of games each team has played in
+      totalGames <- team.statistics[awayTeam.idx, 3] + 1
+      team.statistics[awayTeam.idx, 3] <- totalGames 
+    }
+    
+    
+    # total number of points the team has scored
+    totalPointsForMatch <- getTotalPoints(homeTeam, awayTeam, match$homeGoals, match$awayGoals, team.statistics[homeTeam.idx, 5], team.statistics[awayTeam.idx, 5], whoGotSnitch)
+      team.statistics[homeTeam.idx, 5] <- totalPointsForMatch[1] 
+      team.statistics[awayTeam.idx, 5] <- totalPointsForMatch[2] 
+
+    # Provide these results in a data frame. 
+    # Provide a table containing the team statistics for all seasons. 
+    # Including, but not limited to the following:
+    # Number of games
+    # Number of wins
+    # Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins. 
+    # Teams ordered in terms of total points scored.
+      
+  }
+  
+    # Run the function on the provided data and show the resulting table output.
+
+}
+
+# I've abstracted this function because point calculations are used more than once
+getTotalPoints <- function(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, homeTeamPoints, awayTeamPoints, whoGotSnitch) {
+  homeTeamFinalPoints <- 0
+  awayTeamFinalPoints <- 0
+  
+  # convert goals to points
+  homeTeamFinalPoints <- homeTeamGoals * 10
+  awayTeamFinalPoints <- awayTeamGoals * 10
+
+  # award points: win, draw
+  if(homeTeamPoints > awayTeamPoints) {
+    homeTeamFinalPoints <- homeTeamPoints + 3
+    awayTeamFinalPoints <- awayTeamPoints
+  } else if(homeTeamPoints == awayTeamPoints) {
+    homeTeamFinalPoints <- homeTeamPoints + 1
+    awayTeamFinalPoints <- awayTeamPoints + 1
+  } else if(homeTeamPoints < awayTeamPoints){
+    homeTeamFinalPoints <- homeTeamPoints
+    awayTeamFinalPoints <- awayTeamPoints + 3
+  } else {
+    # do nothing
+  }
+  
+  # snitch bonus points
+  if(homeTeam == whoGotSnitch) {
+    homeTeamFinalPoints <- homeTeamFinalPoints + 50
+  } elseif (awayTeam == whoGotSnitch) {
+    awayTeamFinalPoints <- awayTeamFinalPoints + 50
+  }
+
+  total.match.points <- c(homeTeamFinalPoints, awayTeamFinalPoints)
+  
+  total.match.points
+}
+```
 
 
-# Provide a table containing the team statistics for all seasons. 
-# Including, but not limited to the following:
-# * Number of games
-# * Number of wins
-# * Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins. 
-# Teams ordered in terms of total points scored.
+
 
 
 

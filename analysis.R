@@ -1,3 +1,5 @@
+
+
 df <- read.csv("competitionResults.csv")
 
 # DATA PREPROCESSING
