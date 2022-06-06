@@ -2,7 +2,9 @@
 title: "AP Assignment"
 author: 'Poonam Nair [sid: 15136653]'
 date: '2022-06-05'
-output: word_document
+output:
+  pdf_document: default
+  word_document: default
 ---
 
 By including this statement, we the authors of this work, verify that:
@@ -283,7 +285,7 @@ c_data <- read.csv("competitionResults.csv")
 seasonList <- list()
 n_matches <- length(c_data$Season)
 
-  for(i in 1:n_matches) {
+  for(i in 1:1) { #TODO : only for one item
     match <- c_data[i,]
     homeTeam <- match$homeTeam
     awayTeam <- match$awayTeam

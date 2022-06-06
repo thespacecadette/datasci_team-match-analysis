@@ -1,0 +1,749 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={AP Assignment},
+  pdfauthor={Poonam Nair {[}sid: 15136653{]}},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+
+\title{AP Assignment}
+\author{Poonam Nair {[}sid: 15136653{]}}
+\date{2022-06-05}
+
+\begin{document}
+\maketitle
+
+By including this statement, we the authors of this work, verify that: *
+We hold a copy of this assignment that we can produce if the original is
+lost or damaged. * We hereby certify that no part of this
+assignment/product has been copied from any other student's work or from
+any other source except where due acknowledgement is made in the
+assignment. No part of this assignment/product has been wrien/produced
+for us by another person except where such collaboration has been
+authorised by the subject lecturer/tutor concerned. * We are aware that
+this work may be reproduced and submied to plagiarism detection soware
+programs for the purpose of detecting possible plagiarism (which may
+retain a copy on its database for future plagiarism checking). * We
+hereby certify that we have read and understand what the School of
+Computing, Engineering and Mathematics denes as minor and substantial
+breaches of misconduct as outlined in the learning guide for this unit.
+
+\hypertarget{question-1}{%
+\section{QUESTION 1}\label{question-1}}
+
+\hypertarget{write-the-code-to-compute-the-total-scored-by-each-team-for-each-match.-note-that-each-goal-is-worth-10-points-and-the-team-that-caught-the-snitch-is-awarded-an-extra-50-points.-run-your-code-on-the-data-and-present-the-results-in-a-table-showing-the-season-and-round-number-the-match-number-a-new-variable-that-identies-each-match-of-the-season-the-home-and-away-team-names-and-their-scores.}{%
+\subsection{Write the code to compute the total scored by each team for
+each match. Note that each goal is worth 10 points and the team that
+caught the snitch is awarded an extra 50 points. Run your code on the
+data and present the results in a table showing the season and round
+number, the match number (a new variable that identies each match of
+the season), the home and away team names and their
+scores.}\label{write-the-code-to-compute-the-total-scored-by-each-team-for-each-match.-note-that-each-goal-is-worth-10-points-and-the-team-that-caught-the-snitch-is-awarded-an-extra-50-points.-run-your-code-on-the-data-and-present-the-results-in-a-table-showing-the-season-and-round-number-the-match-number-a-new-variable-that-identies-each-match-of-the-season-the-home-and-away-team-names-and-their-scores.}}
+
+\hypertarget{data-preprocessing}{%
+\subsection{DATA PREPROCESSING}\label{data-preprocessing}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"competitionResults.csv"}\NormalTok{)}
+
+\FunctionTok{head}\NormalTok{(df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Season round               homeTeam                  awayTeam
+## 1   2012     1 United States Chimeras        Malaysia Tornadoes
+## 2   2012     1           Durhamstrang         Denmark Horntails
+## 3   2012     1     England Nightmares France Hippogriffs Firsts
+## 4   2012     1     Scotland Squirrels       New Zealand Daemons
+## 5   2012     1        Wales Longshots      Australia Centurions
+## 6   2012     1       Ireland Griffins             Japan Falcons
+##                   snitch homeGoals awayGoals
+## 1 United States Chimeras         8         5
+## 2           Durhamstrang        11        12
+## 3     England Nightmares        14        10
+## 4     Scotland Squirrels        11         6
+## 5        Wales Longshots         5         6
+## 6       Ireland Griffins         1         0
+\end{verbatim}
+
+\hypertarget{the-algorithm}{%
+\subsection{THE ALGORITHM}\label{the-algorithm}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# [RESULT] Total scored by each team for each match. Each goal is worth 10 points, team that caught the snitch  awarded extra 50 points. }
+\CommentTok{\# * the season and round number}
+\CommentTok{\# * the match number (a new variable that identifies each match of the season)}
+\CommentTok{\# * the home and away team names and their scores}
+\NormalTok{seasonTable }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol=}\DecValTok{7}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{0}\NormalTok{))}
+\NormalTok{headings }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"season"}\NormalTok{, }\StringTok{"round"}\NormalTok{, }\StringTok{"matchNo"}\NormalTok{, }\StringTok{"homeTeam"}\NormalTok{, }\StringTok{"homeTeamPoints"}\NormalTok{, }\StringTok{"awayTeam"}\NormalTok{, }\StringTok{"awayTeamPoints"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(seasonTable) }\OtherTok{\textless{}{-}}\NormalTok{ headings}
+\FunctionTok{print}\NormalTok{(seasonTable)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] season         round          matchNo        homeTeam       homeTeamPoints
+## [6] awayTeam       awayTeamPoints
+## <0 rows> (or 0-length row.names)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (match\_number }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{nrow}\NormalTok{(df)) \{}
+\NormalTok{  match }\OtherTok{\textless{}{-}}\NormalTok{ df[match\_number,]}
+\NormalTok{  totalPointsHomeTeam }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"homeGoals"}\NormalTok{]] }\SpecialCharTok{*} \DecValTok{10} \SpecialCharTok{+} \FunctionTok{ifelse}\NormalTok{(match[[}\StringTok{"homeTeam"}\NormalTok{]] }\SpecialCharTok{==}\NormalTok{ match[[}\StringTok{"snitch"}\NormalTok{]], }\DecValTok{50}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{  totalPointsAwayTeam }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"awayGoals"}\NormalTok{]] }\SpecialCharTok{*} \DecValTok{10} \SpecialCharTok{+} \FunctionTok{ifelse}\NormalTok{(match[[}\StringTok{"awayTeam"}\NormalTok{]] }\SpecialCharTok{==}\NormalTok{ match[[}\StringTok{"snitch"}\NormalTok{]], }\DecValTok{50}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+
+\NormalTok{  seasonTable[match\_number, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"Season"}\NormalTok{]]}
+\NormalTok{  seasonTable[match\_number, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"round"}\NormalTok{]]}
+\NormalTok{  seasonTable[match\_number, }\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match\_number}
+\NormalTok{  seasonTable[match\_number, }\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"homeTeam"}\NormalTok{]]}
+\NormalTok{  seasonTable[match\_number, }\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalPointsHomeTeam}
+\NormalTok{  seasonTable[match\_number, }\DecValTok{6}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"awayTeam"}\NormalTok{]]}
+\NormalTok{  seasonTable[match\_number, }\DecValTok{7}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalPointsAwayTeam}
+\NormalTok{\}}
+
+\FunctionTok{head}\NormalTok{(seasonTable)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   season round matchNo               homeTeam homeTeamPoints
+## 1   2012     1       1 United States Chimeras            130
+## 2   2012     1       2           Durhamstrang            160
+## 3   2012     1       3     England Nightmares            190
+## 4   2012     1       4     Scotland Squirrels            160
+## 5   2012     1       5        Wales Longshots            100
+## 6   2012     1       6       Ireland Griffins             60
+##                    awayTeam awayTeamPoints
+## 1        Malaysia Tornadoes             50
+## 2         Denmark Horntails            120
+## 3 France Hippogriffs Firsts            100
+## 4       New Zealand Daemons             60
+## 5      Australia Centurions             60
+## 6             Japan Falcons              0
+\end{verbatim}
+
+\hypertarget{question-2}{%
+\section{QUESTION 2}\label{question-2}}
+
+\hypertarget{the-winner-of-each-match-has-highest-score.-each-team-scores-3-points-for-a-win-1-point-for-a-draw.-team-with-most-points-at-the-end-of-season-is-the-season-winner.}{%
+\subsection{The winner of each match has highest score. Each team scores
+3 points for a win, 1 point for a draw. Team with most points at the end
+of season is the season
+winner.}\label{the-winner-of-each-match-has-highest-score.-each-team-scores-3-points-for-a-win-1-point-for-a-draw.-team-with-most-points-at-the-end-of-season-is-the-season-winner.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{teams\_associatedPoints }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol=}\DecValTok{2}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{0}\NormalTok{))}
+\NormalTok{headings }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"teamName"}\NormalTok{, }\StringTok{"totalPoints"}\NormalTok{)}
+\FunctionTok{colnames}\NormalTok{(teams\_associatedPoints) }\OtherTok{\textless{}{-}}\NormalTok{ headings}
+
+\CommentTok{\# I built a function and passed a set (dataframe) and n (first n in set) variable}
+\NormalTok{buildResultsLadder }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(set, n\_matches) \{}
+  \CommentTok{\# aggregate points for each unique team in set}
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n\_matches) \{}
+\NormalTok{    match }\OtherTok{\textless{}{-}}\NormalTok{ set[i,]}
+    
+    \CommentTok{\# award points: win, draw}
+    \ControlFlowTok{if}\NormalTok{(match[[}\StringTok{"homeTeamPoints"}\NormalTok{]] }\SpecialCharTok{\textgreater{}}\NormalTok{ match[[}\StringTok{"awayTeamPoints"}\NormalTok{]]) \{}
+\NormalTok{      homeTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"homeTeamPoints"}\NormalTok{]] }\SpecialCharTok{+} \DecValTok{3}
+\NormalTok{      awayTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"awayTeamPoints"}\NormalTok{]]}
+\NormalTok{    \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(match[[}\StringTok{"homeTeamPoints"}\NormalTok{]] }\SpecialCharTok{==}\NormalTok{ match[[}\StringTok{"awayTeamPoints"}\NormalTok{]]) \{}
+\NormalTok{      homeTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"homeTeamPoints"}\NormalTok{]] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{      awayTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"awayTeamPoints"}\NormalTok{]] }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(match[[}\StringTok{"homeTeamPoints"}\NormalTok{]] }\SpecialCharTok{\textless{}}\NormalTok{ match[[}\StringTok{"awayTeamPoints"}\NormalTok{]])\{}
+\NormalTok{      homeTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"homeTeamPoints"}\NormalTok{]]}
+\NormalTok{      awayTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"awayTeamPoints"}\NormalTok{]] }\SpecialCharTok{+} \DecValTok{3}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \CommentTok{\# do nothing}
+\NormalTok{    \}}
+    
+    \CommentTok{\# aggregate team points}
+\NormalTok{    homeTeamIdx }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(teams\_associatedPoints}\SpecialCharTok{$}\NormalTok{teamName }\SpecialCharTok{==}\NormalTok{ match[[}\StringTok{"homeTeam"}\NormalTok{]])}
+\NormalTok{    awayTeamIdx }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(teams\_associatedPoints}\SpecialCharTok{$}\NormalTok{teamName }\SpecialCharTok{==}\NormalTok{ match[[}\StringTok{"awayTeam"}\NormalTok{]])}
+    
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{length}\NormalTok{(homeTeamIdx) }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{      teams\_associatedPoints[homeTeamIdx, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"homeTeam"}\NormalTok{]]}
+\NormalTok{      teams\_associatedPoints[homeTeamIdx, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ homeTeamFinalPoints}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+      \CommentTok{\# get next row index}
+\NormalTok{      nextRowIdx }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{length}\NormalTok{(teams\_associatedPoints}\SpecialCharTok{$}\NormalTok{teamName) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FunctionTok{length}\NormalTok{(teams\_associatedPoints}\SpecialCharTok{$}\NormalTok{teamName) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+\NormalTok{      teams\_associatedPoints[nextRowIdx, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"homeTeam"}\NormalTok{]]}
+\NormalTok{      teams\_associatedPoints[nextRowIdx, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ homeTeamFinalPoints}
+\NormalTok{    \}}
+    
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{length}\NormalTok{(awayTeamIdx) }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{      teams\_associatedPoints[awayTeamIdx, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"awayTeam"}\NormalTok{]]}
+\NormalTok{      teams\_associatedPoints[awayTeamIdx, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ awayTeamFinalPoints}
+\NormalTok{    \} }\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{      nextRowIdx }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{length}\NormalTok{(teams\_associatedPoints}\SpecialCharTok{$}\NormalTok{teamName) }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FunctionTok{length}\NormalTok{(teams\_associatedPoints}\SpecialCharTok{$}\NormalTok{teamName) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+\NormalTok{      teams\_associatedPoints[nextRowIdx, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ match[[}\StringTok{"awayTeam"}\NormalTok{]]}
+\NormalTok{      teams\_associatedPoints[nextRowIdx, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ awayTeamFinalPoints}
+\NormalTok{    \}}
+    
+\NormalTok{  \}}
+  \CommentTok{\# Order teams by points descending}
+\NormalTok{  teams\_associatedPoints\_ordered }\OtherTok{\textless{}{-}} \FunctionTok{order}\NormalTok{(teams\_associatedPoints}\SpecialCharTok{$}\NormalTok{totalPoints, }\AttributeTok{decreasing =} \ConstantTok{TRUE}\NormalTok{) }
+  \CommentTok{\# returns index of order, used to ORDER tables}
+\NormalTok{  resultsLadder }\OtherTok{\textless{}{-}}\NormalTok{ teams\_associatedPoints[teams\_associatedPoints\_ordered,]}
+  \FunctionTok{print}\NormalTok{(resultsLadder)}
+\NormalTok{\}}
+
+\CommentTok{\# [RESULT] Results Ladder: Each team’s points as per the first 5 rounds (ordered by points)}
+\NormalTok{first5MatchesSet }\OtherTok{\textless{}{-}}\NormalTok{ seasonTable[}\DecValTok{1}\SpecialCharTok{:}\DecValTok{5}\NormalTok{,]}
+\NormalTok{first\_n\_matches }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(first5MatchesSet}\SpecialCharTok{$}\NormalTok{season)}
+\FunctionTok{buildResultsLadder}\NormalTok{(first5MatchesSet, first\_n\_matches)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     teamName totalPoints
+## 5         England Nightmares         193
+## 3               Durhamstrang         163
+## 7         Scotland Squirrels         163
+## 1     United States Chimeras         133
+## 4          Denmark Horntails         120
+## 9            Wales Longshots         103
+## 6  France Hippogriffs Firsts         100
+## 8        New Zealand Daemons          60
+## 10      Australia Centurions          60
+## 2         Malaysia Tornadoes          50
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# [RESULT] Results Ladder: Each team’s points for the full season (ordered by points)}
+\NormalTok{season2016Set }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(seasonTable, }\AttributeTok{subset=}\NormalTok{(season }\SpecialCharTok{==} \DecValTok{2016}\NormalTok{))}
+\NormalTok{season\_no\_matches }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(season2016Set}\SpecialCharTok{$}\NormalTok{season)}
+\FunctionTok{buildResultsLadder}\NormalTok{(season2016Set, season\_no\_matches)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     teamName totalPoints
+## 9            Wales Longshots         203
+## 3               Durhamstrang         173
+## 2             Turkey Knights         163
+## 12       New Zealand Daemons         153
+## 5         England Nightmares         150
+## 10 France Hippogriffs Firsts         143
+## 7         Scotland Squirrels         123
+## 13          France Thestrals         120
+## 11          Ireland Griffins         103
+## 16             Japan Falcons          63
+## 8          Denmark Horntails          60
+## 4             Pakistan Swans          50
+## 6         Malaysia Tornadoes          50
+## 14      Australia Centurions          50
+## 15        Germany Werewolves          50
+## 1     United States Chimeras          30
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Pick the season who’s last digit corresponds to 3.}
+\NormalTok{season2013Set }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(seasonTable, }\AttributeTok{subset=}\NormalTok{(season }\SpecialCharTok{==} \DecValTok{2013}\NormalTok{))}
+\NormalTok{season\_no\_matches }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(season2013Set}\SpecialCharTok{$}\NormalTok{season)}
+\FunctionTok{buildResultsLadder}\NormalTok{(season2013Set, season\_no\_matches)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                     teamName totalPoints
+## 1     United States Chimeras         183
+## 2         Malaysia Tornadoes         173
+## 6  France Hippogriffs Firsts         153
+## 9            Wales Longshots         130
+## 12             Japan Falcons         113
+## 7         Scotland Squirrels         103
+## 13          France Thestrals         103
+## 5         England Nightmares         100
+## 4          Denmark Horntails          80
+## 3               Durhamstrang          70
+## 8        New Zealand Daemons          63
+## 11          Ireland Griffins          40
+## 14        Germany Werewolves          40
+## 10      Australia Centurions          30
+\end{verbatim}
+
+\hypertarget{question-3}{%
+\section{QUESTION 3}\label{question-3}}
+
+\hypertarget{an-investigation-into-home-game-advantage-is-planned-for-the-coming-months.-write-a-function-that-returns-a-count-of-the-number-of-home-games-each-team-has-had-the-total-number-of-games-each-team-has-played-in-the-total-points-scored-in-a-home-game-and-the-total-number-of-points-the-team-has-scored.-provide-these-results-in-a-data-frame.-run-the-function-on-the-provided-data-and-show-the-resulting-table-output.}{%
+\subsection{An investigation into home game advantage is planned for the
+coming months. Write a function that returns a count of the number of
+home games each team has had, the total number of games each team has
+played in, the total points scored in a home game and the total number
+of points the team has scored. Provide these results in a data frame.
+Run the function on the provided data and show the resulting table
+output.}\label{an-investigation-into-home-game-advantage-is-planned-for-the-coming-months.-write-a-function-that-returns-a-count-of-the-number-of-home-games-each-team-has-had-the-total-number-of-games-each-team-has-played-in-the-total-points-scored-in-a-home-game-and-the-total-number-of-points-the-team-has-scored.-provide-these-results-in-a-data-frame.-run-the-function-on-the-provided-data-and-show-the-resulting-table-output.}}
+
+Function below with associated \texttt{getTotalPoints()} I've created to
+handle point/goal calculations. Scroll to next code snippet to test.
+code
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DocumentationTok{\#\# Please note: normally, I would use more of a functional programming approach (centralisation and usage of modules), but for time efficiency, I have not fully done this. }
+\NormalTok{homeGameCalculations }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{ (cf) \{}
+  \CommentTok{\# numeric vars}
+\NormalTok{  n\_matches }\OtherTok{=} \FunctionTok{nrow}\NormalTok{(competition.results.df)}
+  \CommentTok{\# data vars}
+\NormalTok{  team.statistics }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{ncol=}\DecValTok{5}\NormalTok{, }\AttributeTok{nrow=}\DecValTok{0}\NormalTok{))}
+  \FunctionTok{colnames}\NormalTok{(team.statistics) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"team"}\NormalTok{, }\StringTok{"home.games"}\NormalTok{, }\StringTok{"total.games"}\NormalTok{, }\StringTok{"total.points.homegame"}\NormalTok{, }\StringTok{"total.points"}\NormalTok{)}
+
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\NormalTok{n\_matches) \{}
+\NormalTok{    match }\OtherTok{\textless{}{-}}\NormalTok{ competition.results.df[i,]}
+\NormalTok{    homeTeam }\OtherTok{\textless{}{-}}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{homeTeam}
+\NormalTok{    awayTeam }\OtherTok{\textless{}{-}}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{awayTeam}
+  
+    \CommentTok{\# indexes}
+\NormalTok{    homeTeam.idx }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(team.statistics}\SpecialCharTok{$}\NormalTok{team }\SpecialCharTok{==}\NormalTok{ homeTeam)}
+\NormalTok{    awayTeam.idx }\OtherTok{\textless{}{-}} \FunctionTok{which}\NormalTok{(team.statistics}\SpecialCharTok{$}\NormalTok{team }\SpecialCharTok{==}\NormalTok{ awayTeam)}
+\NormalTok{    nextIdx }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(team.statistics}\SpecialCharTok{$}\NormalTok{team)}
+  
+    \CommentTok{\# Hometeam stat calculations}
+\NormalTok{    homeIdx }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(nextIdx }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{length}\NormalTok{(homeTeam.idx) }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{, homeTeam.idx, nextIdx}\SpecialCharTok{+}\DecValTok{1}\NormalTok{))}
+    
+    \CommentTok{\# Awayteam stat calculations}
+\NormalTok{    awayIdx }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(nextIdx }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{2}\NormalTok{, }\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{length}\NormalTok{(awayTeam.idx) }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{, awayTeam.idx, nextIdx}\SpecialCharTok{+}\DecValTok{2}\NormalTok{))}
+  
+\NormalTok{    team.statistics[homeIdx, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ homeTeam }
+\NormalTok{    team.statistics[awayIdx, }\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ awayTeam }
+    
+    \CommentTok{\# The number of HOME games each team has had}
+\NormalTok{    totalHomeGames }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(team.statistics[homeIdx, }\DecValTok{2}\NormalTok{]), }\DecValTok{1}\NormalTok{, team.statistics[homeIdx, }\DecValTok{2}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+\NormalTok{    team.statistics[homeIdx, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalHomeGames }
+\NormalTok{    team.statistics[awayIdx, }\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(team.statistics[awayIdx, }\DecValTok{2}\NormalTok{]), }\DecValTok{0}\NormalTok{, team.statistics[awayIdx, }\DecValTok{2}\NormalTok{])}
+  
+    \CommentTok{\# The total number of games each team has played in}
+\NormalTok{    totalHomeTeamGames }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(team.statistics[homeIdx, }\DecValTok{3}\NormalTok{]), }\DecValTok{1}\NormalTok{, team.statistics[homeIdx, }\DecValTok{3}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+\NormalTok{    team.statistics[homeIdx, }\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalHomeTeamGames }
+\NormalTok{    totalAwayTeamGames }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(team.statistics[awayIdx, }\DecValTok{3}\NormalTok{]), }\DecValTok{1}\NormalTok{, team.statistics[awayIdx, }\DecValTok{3}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+\NormalTok{    team.statistics[awayIdx, }\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalAwayTeamGames }
+  
+    \CommentTok{\# The total points scored in a home game}
+\NormalTok{    totalHomeGamePoints }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(team.statistics[homeIdx, }\DecValTok{4}\NormalTok{]), }\DecValTok{1}\NormalTok{, team.statistics[homeIdx, }\DecValTok{4}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{homeGoals)}
+\NormalTok{    team.statistics[homeIdx, }\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalHomeGamePoints}
+\NormalTok{    team.statistics[awayIdx, }\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(team.statistics[awayIdx, }\DecValTok{4}\NormalTok{]), }\DecValTok{0}\NormalTok{, team.statistics[awayIdx, }\DecValTok{4}\NormalTok{])}
+  
+    \CommentTok{\# total points overall}
+\NormalTok{    totalPointsForMatch }\OtherTok{\textless{}{-}} \DecValTok{0} \CommentTok{\# initialise variable here}
+\NormalTok{    whoGotSnitch }\OtherTok{\textless{}{-}}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{snitch}
+\NormalTok{        totalPointsForMatch }\OtherTok{\textless{}{-}}  \FunctionTok{getTotalPoints}\NormalTok{(homeTeam, awayTeam, match}\SpecialCharTok{$}\NormalTok{homeGoals, match}\SpecialCharTok{$}\NormalTok{awayGoals, totalHomeGamePoints, team.statistics[awayIdx, }\DecValTok{5}\NormalTok{], whoGotSnitch)}
+  
+\NormalTok{    team.statistics[homeIdx, }\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalPointsForMatch[}\DecValTok{1}\NormalTok{]}
+\NormalTok{    team.statistics[awayIdx, }\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalPointsForMatch[}\DecValTok{2}\NormalTok{]}
+\NormalTok{  \}}
+  
+  \FunctionTok{print}\NormalTok{(team.statistics)}
+
+\NormalTok{\}}
+
+\NormalTok{getTotalPoints }\OtherTok{\textless{}{-}} \ControlFlowTok{function}\NormalTok{(homeTeam, awayTeam, homeTeamGoals, awayTeamGoals, homeTeamPoints, awayTeamPoints, whoGotSnitch) \{}
+\NormalTok{  homeTeamFinalPoints }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{  awayTeamFinalPoints }\OtherTok{\textless{}{-}} \DecValTok{0}
+  
+  \CommentTok{\# convert goals to points}
+\NormalTok{  homeTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ homeTeamGoals }\SpecialCharTok{*} \DecValTok{10}
+\NormalTok{  awayTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ awayTeamGoals }\SpecialCharTok{*} \DecValTok{10}
+
+  \CommentTok{\# check NA on awayTeamPoints}
+\NormalTok{  awayTeamPoints }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(awayTeamPoints),}\DecValTok{0}\NormalTok{,awayTeamPoints)}
+  
+  \CommentTok{\# award points: win, draw}
+  \ControlFlowTok{if}\NormalTok{(homeTeamPoints }\SpecialCharTok{\textgreater{}}\NormalTok{ awayTeamPoints) \{}
+\NormalTok{    homeTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ homeTeamPoints }\SpecialCharTok{+} \DecValTok{3}
+\NormalTok{    awayTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ awayTeamPoints}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(homeTeamPoints }\SpecialCharTok{==}\NormalTok{ awayTeamPoints) \{}
+\NormalTok{    homeTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ homeTeamPoints }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{    awayTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ awayTeamPoints }\SpecialCharTok{+} \DecValTok{1}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{(homeTeamPoints }\SpecialCharTok{\textless{}}\NormalTok{ awayTeamPoints)\{}
+\NormalTok{    homeTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ homeTeamPoints}
+\NormalTok{    awayTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ awayTeamPoints }\SpecialCharTok{+} \DecValTok{3}
+\NormalTok{  \} }\ControlFlowTok{else}\NormalTok{ \{}
+    \CommentTok{\# do nothing}
+\NormalTok{  \}}
+  
+  \CommentTok{\# snitch bonus points}
+  \ControlFlowTok{if}\NormalTok{(homeTeam }\SpecialCharTok{==}\NormalTok{ whoGotSnitch) \{}
+\NormalTok{    homeTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ homeTeamFinalPoints }\SpecialCharTok{+} \DecValTok{50}
+\NormalTok{  \} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (awayTeam }\SpecialCharTok{==}\NormalTok{ whoGotSnitch) \{}
+\NormalTok{    awayTeamFinalPoints }\OtherTok{\textless{}{-}}\NormalTok{ awayTeamFinalPoints }\SpecialCharTok{+} \DecValTok{50}
+\NormalTok{  \}}
+
+\NormalTok{  total.match.points }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(homeTeamFinalPoints, awayTeamFinalPoints)}
+\NormalTok{  total.match.points}
+\NormalTok{\}}
+
+\NormalTok{competition.results.df }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"competitionResults.csv"}\NormalTok{)}
+  
+\CommentTok{\# Run the function on the provided data and show the resulting table output.}
+\FunctionTok{homeGameCalculations}\NormalTok{(competition.results.df)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                         team home.games total.games total.points.homegame
+## 1     United States Chimeras        164         328                  1210
+## 2         Malaysia Tornadoes        164         328                  1234
+## 3               Durhamstrang        164         328                  1209
+## 4          Denmark Horntails        164         328                  1311
+## 5         England Nightmares        164         328                  1151
+## 6  France Hippogriffs Firsts        164         328                  1265
+## 7         Scotland Squirrels        164         328                  1211
+## 8        New Zealand Daemons        164         328                  1282
+## 9            Wales Longshots        164         328                  1303
+## 10      Australia Centurions        164         328                  1240
+## 11          Ireland Griffins        164         328                  1149
+## 12             Japan Falcons        164         328                  1184
+## 13          France Thestrals        164         328                  1148
+## 14        Germany Werewolves        164         328                  1268
+## 15                      <NA>         NA          NA                    NA
+## 16            Turkey Knights        138         276                  1052
+## 17                      <NA>         NA          NA                    NA
+## 18            Pakistan Swans        138         276                  1029
+## 19                      <NA>         NA          NA                    NA
+## 20       Norway Unspeakables         93         186                   702
+## 21                      <NA>         NA          NA                    NA
+## 22     South Africa Snidgets         93         186                   681
+## 23                      <NA>         NA          NA                    NA
+## 24         Iceland Quidlings         59         118                   439
+## 25                      <NA>         NA          NA                    NA
+## 26          India Direwolves         59         118                   452
+## 27                      <NA>         NA          NA                    NA
+## 28       Portugal Manticores         21          42                   127
+## 29                      <NA>         NA          NA                    NA
+## 30            China Nifflers         21          42                   118
+##    total.points
+## 1          1673
+## 2          1284
+## 3          1259
+## 4          1311
+## 5          1204
+## 6          1595
+## 7          1267
+## 8          1559
+## 9          1412
+## 10         1514
+## 11         1308
+## 12         1452
+## 13         1360
+## 14         1536
+## 15           NA
+## 16         1052
+## 17           NA
+## 18         1079
+## 19           NA
+## 20          752
+## 21           NA
+## 22          681
+## 23           NA
+## 24          489
+## 25           NA
+## 26          452
+## 27           NA
+## 28          127
+## 29           NA
+## 30          168
+\end{verbatim}
+
+\hypertarget{testing-function}{%
+\subsection{Testing function}\label{testing-function}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# PUT HERE}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{question-4}{%
+\section{QUESTION 4}\label{question-4}}
+
+\hypertarget{provide-a-table-containing-the-team-statistics-for-all-seasons.-including-but-not-limited-to-the-following-number-of-games-number-of-wins-winning-percentage-points-scored-points-conceded-number-of-snitch-catches-goals-scored-number-of-tournament-wins.-order-the-teams-in-terms-of-total-points-scored.}{%
+\subsection{Provide a table containing the team statistics for all
+seasons. Including, but not limited to the following: number of games,
+number of wins, winning percentage, points scored, points conceded,
+number of snitch catches, goals scored, number of tournament wins. Order
+the teams in terms of total points
+scored.}\label{provide-a-table-containing-the-team-statistics-for-all-seasons.-including-but-not-limited-to-the-following-number-of-games-number-of-wins-winning-percentage-points-scored-points-conceded-number-of-snitch-catches-goals-scored-number-of-tournament-wins.-order-the-teams-in-terms-of-total-points-scored.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(expss)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: maditr
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## To aggregate several columns with one summary: take(mtcars, mpg, hp, fun = mean, by = am)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{s1 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow=}\DecValTok{2}\NormalTok{,}\AttributeTok{ncol=}\DecValTok{2}\NormalTok{))}
+\FunctionTok{colnames}\NormalTok{(s1) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"test"}\NormalTok{,}\StringTok{"test1"}\NormalTok{)}
+\NormalTok{s1[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"a"}
+\NormalTok{s1[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"a\_test1"}
+
+\NormalTok{s\_1 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\StringTok{"2012"}\NormalTok{, s1)}
+
+\NormalTok{s2 }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow=}\DecValTok{2}\NormalTok{,}\AttributeTok{ncol=}\DecValTok{2}\NormalTok{))}
+\FunctionTok{colnames}\NormalTok{(s1) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"test"}\NormalTok{,}\StringTok{"test1"}\NormalTok{)}
+\NormalTok{s2[}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"b"}
+\NormalTok{s2[}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}} \StringTok{"b\_test1"}
+
+
+\NormalTok{s\_1 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\StringTok{"2012"}\NormalTok{, s1)}
+\NormalTok{s\_2 }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\StringTok{"2013"}\NormalTok{, s2)}
+\NormalTok{nnn }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+
+\NormalTok{nnn[[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ s\_1}
+\CommentTok{\# print(length(nnn))}
+\CommentTok{\#print(nnn[[2]][2])}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Provide a table containing the team statistics for all seasons. }
+\NormalTok{c\_data }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"competitionResults.csv"}\NormalTok{)}
+\NormalTok{seasonList }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{()}
+\NormalTok{n\_matches }\OtherTok{\textless{}{-}} \FunctionTok{length}\NormalTok{(c\_data}\SpecialCharTok{$}\NormalTok{Season)}
+
+  \ControlFlowTok{for}\NormalTok{(i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{1}\NormalTok{) \{ }\CommentTok{\#TODO : only for one item}
+\NormalTok{    match }\OtherTok{\textless{}{-}}\NormalTok{ c\_data[i,]}
+\NormalTok{    homeTeam }\OtherTok{\textless{}{-}}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{homeTeam}
+\NormalTok{    awayTeam }\OtherTok{\textless{}{-}}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{awayTeam}
+\NormalTok{    season }\OtherTok{\textless{}{-}}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{Season}
+  
+    \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+    \CommentTok{\# Season data}
+    \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+    \CommentTok{\# if seasonList does\textquotesingle{}t have season, create, else extract subset}
+\NormalTok{    seasonSubset }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\FunctionTok{matrix}\NormalTok{(}\AttributeTok{nrow=}\DecValTok{0}\NormalTok{,}\AttributeTok{ncol=}\DecValTok{9}\NormalTok{))}
+    \FunctionTok{colnames}\NormalTok{(seasonSubset) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"team"}\NormalTok{,}\StringTok{"no.games"}\NormalTok{,}\StringTok{"no.wins"}\NormalTok{,}\StringTok{"win.percentage"}\NormalTok{,}\StringTok{"points.scored"}\NormalTok{,}\StringTok{"points.conceded"}\NormalTok{,}\StringTok{"total.snitches"}\NormalTok{,}\StringTok{"goals"}\NormalTok{,}\StringTok{"tournament.wins"}\NormalTok{)}
+\NormalTok{    seasonExistsIndex }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    homeTeamExistsIndex }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    awayTeamExistsIndex }\OtherTok{\textless{}{-}} \DecValTok{0}
+
+    \ControlFlowTok{if}\NormalTok{(}\FunctionTok{length}\NormalTok{(seasonList) }\SpecialCharTok{\textgreater{}} \DecValTok{0}\NormalTok{) \{}
+      \ControlFlowTok{for}\NormalTok{(s }\ControlFlowTok{in} \FunctionTok{length}\NormalTok{(seasonList)) \{}
+        \ControlFlowTok{if}\NormalTok{(season }\SpecialCharTok{==}\NormalTok{ seasonList[[s]][}\DecValTok{1}\NormalTok{]) \{}
+\NormalTok{          seasonSubset }\OtherTok{\textless{}{-}}\NormalTok{ seasonList[[s]][}\DecValTok{2}\NormalTok{]}
+          \CommentTok{\# get match from season subset}
+          \ControlFlowTok{for}\NormalTok{(ss }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(seasonSubset}\SpecialCharTok{$}\NormalTok{no.games)) \{}
+            \ControlFlowTok{if}\NormalTok{(seasonSubset}\SpecialCharTok{$}\NormalTok{team }\SpecialCharTok{==}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{homeTeam) \{}
+\NormalTok{              homeTeam }\OtherTok{\textless{}{-}}\NormalTok{ seasonSubset}
+\NormalTok{              homeTeamExistsIndex }\OtherTok{\textless{}{-}}\NormalTok{ ss}
+\NormalTok{            \}}
+            \ControlFlowTok{if}\NormalTok{(seasonSubset}\SpecialCharTok{$}\NormalTok{team }\SpecialCharTok{==}\NormalTok{ match}\SpecialCharTok{$}\NormalTok{awayTeam) \{}
+\NormalTok{              awayTeam }\OtherTok{\textless{}{-}}\NormalTok{ seasonSubset}
+\NormalTok{              awayTeamExistsIndex }\OtherTok{\textless{}{-}}\NormalTok{ ss}
+\NormalTok{            \}}
+\NormalTok{          \}}
+\NormalTok{          seasonExistsIndex }\OtherTok{\textless{}{-}}\NormalTok{ s}
+\NormalTok{        \}}
+\NormalTok{      \}}
+\NormalTok{    \}}
+    
+    \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+    \CommentTok{\# Match statistics}
+    \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+    \CommentTok{\# calculate}
+    \CommentTok{\# Number of games}
+\NormalTok{    totalHomeGames }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(homeTeamExistsIndex }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, seasonSubset[homeTeamExistsIndex, }\DecValTok{2}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+\NormalTok{    totalAwayGames }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(awayTeamExistsIndex }\SpecialCharTok{==} \DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, seasonSubset[awayTeamExistsIndex, }\DecValTok{2}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+
+    \CommentTok{\# Number of points}
+\NormalTok{    totalHomePoints }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(homeTeamExistsIndex }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{, }\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(seasonSubset[homeTeamExistsIndex, }\DecValTok{5}\NormalTok{]),match}\SpecialCharTok{$}\NormalTok{homeGoals }\SpecialCharTok{*} \DecValTok{10}\NormalTok{,seasonSubset[homeTeamExistsIndex, }\DecValTok{5}\NormalTok{]), match}\SpecialCharTok{$}\NormalTok{homeGoals }\SpecialCharTok{*} \DecValTok{10}\NormalTok{)}
+\NormalTok{        totalAwayPoints }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(homeTeamExistsIndex }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{, }\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(seasonSubset[homeTeamExistsIndex, }\DecValTok{5}\NormalTok{]),match}\SpecialCharTok{$}\NormalTok{homeGoals }\SpecialCharTok{*} \DecValTok{10}\NormalTok{,seasonSubset[homeTeamExistsIndex, }\DecValTok{5}\NormalTok{]), match}\SpecialCharTok{$}\NormalTok{homeGoals }\SpecialCharTok{*} \DecValTok{10}\NormalTok{)}
+
+    \CommentTok{\# Number of wins}
+\NormalTok{    totalHomeWins }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(homeTeamExistsIndex }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ totalHomePoints }\SpecialCharTok{\textgreater{}}\NormalTok{ totalAwayPoints, seasonSubset[homeTeamExistsIndex, }\DecValTok{3}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{, seasonSubset[homeTeamExistsIndex, }\DecValTok{3}\NormalTok{])}
+\NormalTok{    totalAwayWins }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(awayTeamExistsIndex }\SpecialCharTok{==} \DecValTok{0} \SpecialCharTok{\&\&}\NormalTok{ totalHomePoints }\SpecialCharTok{\textless{}}\NormalTok{ totalAwayPoints, seasonSubset[awayTeamExistsIndex, }\DecValTok{3}\NormalTok{] }\SpecialCharTok{+} \DecValTok{1}\NormalTok{, seasonSubset[awayTeamExistsIndex, }\DecValTok{3}\NormalTok{])}
+    
+    \CommentTok{\# Points conceded}
+\NormalTok{    homePointsConceded }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(homeTeamExistsIndex }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{, }\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(seasonSubset[homeTeamExistsIndex, }\DecValTok{6}\NormalTok{]), totalAwayPoints, seasonSubset[homeTeamExistsIndex, }\DecValTok{6}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ totalAwayPoints), totalHomePoints)}
+\NormalTok{    awayPointsConceded }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(awayTeamExistsIndex }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{, }\FunctionTok{ifelse}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(seasonSubset[awayTeamExistsIndex, }\DecValTok{6}\NormalTok{]), totalHomePoints, seasonSubset[awayTeamExistsIndex, }\DecValTok{6}\NormalTok{] }\SpecialCharTok{+}\NormalTok{ totalHomePoints), totalAwayPoints)}
+
+                \CommentTok{\# colnames(seasonSubset) \textless{}{-} c("team","no.games","no.wins","win.percentage","points.scored","points.conceded","total.snitches","goals","tournament.wins")}
+    
+    \CommentTok{\# Winning percentage}
+\NormalTok{    totalHomeWinPerc }\OtherTok{\textless{}{-}}\NormalTok{ totalHomeWins }\SpecialCharTok{/}\NormalTok{ totalHomeGames}
+\NormalTok{    totalAwayWins }\OtherTok{\textless{}{-}}\NormalTok{ totalAwayWins }\SpecialCharTok{/}\NormalTok{ totalAwayGames}
+    
+    \CommentTok{\# no of snitch catches, goals scored, number of tournament wins.}
+
+    \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+    \CommentTok{\# Update/Insert season}
+    \DocumentationTok{\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#\#}
+    \CommentTok{\# insert partial data into season data}
+    
+\NormalTok{    h.team.idx }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(homeTeamExistsIndex }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{, homeTeamExistsIndex, }\FunctionTok{length}\NormalTok{(seasonSubset}\SpecialCharTok{$}\NormalTok{team) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ homeTeam}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalHomeGames}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalHomeWins}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalHomePoints}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{6}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ homePointsConceded}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{7}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{8}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    seasonSubset[h.team.idx,}\DecValTok{9}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+      
+\NormalTok{    a.team.idx }\OtherTok{=} \FunctionTok{ifelse}\NormalTok{(awayTeamExistsIndex }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{, awayTeamExistsIndex, }\FunctionTok{length}\NormalTok{(seasonSubset}\SpecialCharTok{$}\NormalTok{team) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ awayTeam}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{2}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalAwayGames}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{3}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalAwayWins}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{4}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{5}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ totalAwayPoints}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{6}\NormalTok{] }\OtherTok{\textless{}{-}}\NormalTok{ awayPointsConceded}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{7}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{8}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+\NormalTok{    seasonSubset[a.team.idx,}\DecValTok{9}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{0}
+
+    \CommentTok{\# insert season subset back into season}
+    \ControlFlowTok{if}\NormalTok{(seasonExistsIndex }\SpecialCharTok{!=} \DecValTok{0}\NormalTok{) \{}
+\NormalTok{      seasonList[[seasonExistsIndex]][[}\DecValTok{1}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ season}
+\NormalTok{      seasonList[[seasonExistsIndex]][[}\DecValTok{2}\NormalTok{]] }\OtherTok{\textless{}{-}}\NormalTok{ seasonSubset}
+\NormalTok{    \}}\ControlFlowTok{else}\NormalTok{ \{}
+\NormalTok{      seasonList[[(}\FunctionTok{length}\NormalTok{(seasonList) }\SpecialCharTok{+} \DecValTok{1}\NormalTok{)]] }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(season, seasonSubset)}
+\NormalTok{    \}}
+\NormalTok{  \}}
+
+\CommentTok{\# }\AlertTok{TODO}\CommentTok{: I couldn\textquotesingle{}t easily add subheaders for seasons, so I\textquotesingle{}m outputting the entire list instead}
+  \CommentTok{\# for(i in length(seasonList)) \{}
+  \CommentTok{\#   print(seasonList[[i]][2][[1]])}
+  \CommentTok{\# \}}
+  
+  \FunctionTok{print}\NormalTok{(seasonList)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [[1]]
+## [[1]][[1]]
+## [1] 2012
+## 
+## [[1]][[2]]
+##                     team no.games no.wins win.percentage points.scored
+## 1 United States Chimeras        1      NA              0            80
+## 2     Malaysia Tornadoes        1      NA              0            80
+##   points.conceded total.snitches goals tournament.wins
+## 1              80              0     0               0
+## 2              80              0     0               0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# }\AlertTok{TODO}\CommentTok{: Teams ordered in terms of total points scored.}
+\end{Highlighting}
+\end{Shaded}
+
+
+\end{document}
