@@ -267,18 +267,11 @@ s2[2,2] <- "b_test1"
 
 s_1 <- list("2012", s1)
 s_2 <- list("2013", s2)
-nnn <- list(s_1,s_2)
+nnn <- list()
 
-for(n in 2) {
-  # print(testlist[[n]])
-  print("_____")
-}
-
-  print(nnn[[2]][2])
-
-testss <- data.frame()
-
-print(is.na.data.frame(testss))
+nnn[[1]] <- s_1
+# print(length(nnn))
+#print(nnn[[2]][2])
 
 ```
 
@@ -288,9 +281,9 @@ print(is.na.data.frame(testss))
 # Provide a table containing the team statistics for all seasons. 
 c_data <- read.csv("competitionResults.csv")
 seasonList <- list()
-n_matches <- 5 # nrow(c_data$Season)
+n_matches <- length(c_data$Season)
 
-  for(i in 1:1) {
+  for(i in 1:n_matches) {
     match <- c_data[i,]
     homeTeam <- match$homeTeam
     awayTeam <- match$awayTeam
@@ -329,44 +322,74 @@ n_matches <- 5 # nrow(c_data$Season)
     ###############################
     # Match statistics
     ###############################
-    seasonMatchData <- NULL
-
     # calculate
     # Number of games
-    
-    totalGames <- ifelse(is.na(team.statistics[homeIdx, 4]), 1, team.statistics[homeIdx, 4] + match$homeGoals)
+    totalHomeGames <- ifelse(homeTeamExistsIndex == 0, 1, seasonSubset[homeTeamExistsIndex, 2] + 1)
+    totalAwayGames <- ifelse(awayTeamExistsIndex == 0, 1, seasonSubset[awayTeamExistsIndex, 2] + 1)
+
+    # Number of points
+    totalHomePoints <- ifelse(homeTeamExistsIndex != 0, ifelse(is.na(seasonSubset[homeTeamExistsIndex, 5]),match$homeGoals * 10,seasonSubset[homeTeamExistsIndex, 5]), match$homeGoals * 10)
+        totalAwayPoints <- ifelse(homeTeamExistsIndex != 0, ifelse(is.na(seasonSubset[homeTeamExistsIndex, 5]),match$homeGoals * 10,seasonSubset[homeTeamExistsIndex, 5]), match$homeGoals * 10)
 
     # Number of wins
-    # Winning percentage, points scored, points conceded, no of snitch catches, goals scored, number of tournament wins.
+    totalHomeWins <- ifelse(homeTeamExistsIndex == 0 && totalHomePoints > totalAwayPoints, seasonSubset[homeTeamExistsIndex, 3] + 1, seasonSubset[homeTeamExistsIndex, 3])
+    totalAwayWins <- ifelse(awayTeamExistsIndex == 0 && totalHomePoints < totalAwayPoints, seasonSubset[awayTeamExistsIndex, 3] + 1, seasonSubset[awayTeamExistsIndex, 3])
     
+    # Points conceded
+    homePointsConceded <- ifelse(homeTeamExistsIndex != 0, ifelse(is.na(seasonSubset[homeTeamExistsIndex, 6]), totalAwayPoints, seasonSubset[homeTeamExistsIndex, 6] + totalAwayPoints), totalHomePoints)
+    awayPointsConceded <- ifelse(awayTeamExistsIndex != 0, ifelse(is.na(seasonSubset[awayTeamExistsIndex, 6]), totalHomePoints, seasonSubset[awayTeamExistsIndex, 6] + totalHomePoints), totalAwayPoints)
+
+                # colnames(seasonSubset) <- c("team","no.games","no.wins","win.percentage","points.scored","points.conceded","total.snitches","goals","tournament.wins")
     
+    # Winning percentage
+    totalHomeWinPerc <- totalHomeWins / totalHomeGames
+    totalAwayWins <- totalAwayWins / totalAwayGames
+    
+    # no of snitch catches, goals scored, number of tournament wins.
+
     ###############################
     # Update/Insert season
     ###############################
-    # insert data into season data
-    if(awayTeamExistsIndex != 0) {
-      
-    } else {
-      
-    }
-    if(homeTeamExistsIndex != 0) {
-      
-    } else {
-      
-    }
+    # insert partial data into season data
     
+    h.team.idx = ifelse(homeTeamExistsIndex != 0, homeTeamExistsIndex, length(seasonSubset$team) + 1)
+    seasonSubset[h.team.idx,1] <- homeTeam
+    seasonSubset[h.team.idx,2] <- totalHomeGames
+    seasonSubset[h.team.idx,3] <- totalHomeWins
+    seasonSubset[h.team.idx,4] <- 0
+    seasonSubset[h.team.idx,5] <- totalHomePoints
+    seasonSubset[h.team.idx,6] <- homePointsConceded
+    seasonSubset[h.team.idx,7] <- 0
+    seasonSubset[h.team.idx,8] <- 0
+    seasonSubset[h.team.idx,9] <- 0
+      
+    a.team.idx = ifelse(awayTeamExistsIndex != 0, awayTeamExistsIndex, length(seasonSubset$team) + 1)
+    seasonSubset[a.team.idx,1] <- awayTeam
+    seasonSubset[a.team.idx,2] <- totalAwayGames
+    seasonSubset[a.team.idx,3] <- totalAwayWins
+    seasonSubset[a.team.idx,4] <- 0
+    seasonSubset[a.team.idx,5] <- totalAwayPoints
+    seasonSubset[a.team.idx,6] <- awayPointsConceded
+    seasonSubset[a.team.idx,7] <- 0
+    seasonSubset[a.team.idx,8] <- 0
+    seasonSubset[a.team.idx,9] <- 0
+
     # insert season subset back into season
     if(seasonExistsIndex != 0) {
       seasonList[[seasonExistsIndex]][[1]] <- season
       seasonList[[seasonExistsIndex]][[2]] <- seasonSubset
     }else {
-      append(seasonList, season_data, after = 0)
+      seasonList[[(length(seasonList) + 1)]] <- list(season, seasonSubset)
     }
   }
+
+# TODO: I couldn't easily add subheaders for seasons, so I'm outputting the entire list instead
+  # for(i in length(seasonList)) {
+  #   print(seasonList[[i]][2][[1]])
+  # }
   
   print(seasonList)
-# Teams ordered in terms of total points scored.
-#     
+# TODO: Teams ordered in terms of total points scored.
 
 ```
 
